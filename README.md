@@ -385,9 +385,8 @@ Verifica que el paso no sea cero y que la condición sea correcta.
 Usa `retorna` para devolver un valor de una función.
 
 ## Autor
-
-Intérprete creado en C++ con lexer, parser e intérprete personalizado.
-Luis Fernando Crespo Soliz
+Luis Fernando Crespo Soliz 
+ Intérprete creado en C++ con lexer, parser e intérprete personalizado.
 
 ## Licencia
 
