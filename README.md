@@ -387,6 +387,7 @@ Usa `retorna` para devolver un valor de una función.
 ## Autor
 
 Intérprete creado en C++ con lexer, parser e intérprete personalizado.
+Luis Fernando Crespo Soliz
 
 ## Licencia
 
