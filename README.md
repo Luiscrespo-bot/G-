@@ -1,393 +1,168 @@
-# Lenguaje de Programación en Español
+# LenguajeLd — Lenguaje de programación en Español (Intérprete en C++)
 
-## Descripción
+## Español (ES)
 
-Este proyecto implementa un lenguaje de programación simple con sintaxis completamente en español, incluyendo su propio intérprete escrito en C++. El lenguaje soporta variables, tipos básicos, operaciones aritméticas, control de flujo, y funciones.
+Un lenguaje de programación educativo con palabras clave en español y un intérprete implementado en C++ (lexer, parser y ejecutor). Ideal para aprender conceptos de análisis léxico/sintáctico y para escribir programas sencillos usando sintaxis totalmente en español.
 
-## Características
+### Estado
+Funcional: intérprete CLI y una versión IDE básica incluida. Ejemplos incluidos en /ejemplos. Proyecto en desarrollo — mejoras planeadas (arrays, módulos, excepciones).
 
-- **Sintaxis en Español**: Todas las palabras clave están en español
-- **Tipos de Datos Soportados**:
-  - Números (decimales e enteros)
-  - Texto (cadenas de caracteres)
-  - Booleanos (verdadero/falso)
-- **Características**:
-  - Variables con declaração `var`
-  - Operaciones aritméticas: `+`, `-`, `*`, `/`, `%`
-  - Comparadores: `==`, `!=`, `<`, `>`, `<=`, `>=`
-  - Operadores lógicos: `&&`, `||`, `!`
-  - Control condicional: `si`, `sino`
-  - Bucles: `mientras`, `para`
-  - Funciones con parámetros y retorno
-  - Entrada/Salida: `escribir`, `leer`
+### Características principales
+- Sintaxis y palabras clave en español (ej.: `var`, `si`, `sino`, `mientras`, `para`, `funcion`, `retorna`, `escribir`, `leer`).
+- Tipos básicos: números (enteros y decimales), textos (strings), booleanos.
+- Operadores aritméticos, comparadores y lógicos.
+- Declaración de variables, funciones con parámetros y retorno.
+- Control de flujo: condicionales y bucles.
+- Modo interactivo (REPL) y ejecución de archivos.
+- Ejemplos listos en `ejemplos/`.
 
-## Estructura del Proyecto
-
+### Estructura del proyecto
 ```
-Lenguage/
-├── src/
-│   ├── Token.h              # Definición de tokens
-│   ├── Lexer.h              # Analizador léxico
+/ (repo root)
+├── CMakeLists.txt           # configuración de build (genera 2 ejecutables)
+├── main.cpp                 # intérprete CLI (ejecuta archivos o REPL)
+├── ide_main.cpp             # ejecutable para la IDE web básica
+├── src/                     # código fuente del lenguaje
+│   ├── Lexer.h
 │   ├── Lexer.cpp
-│   ├── Parser.h             # Analizador sintáctico
+│   ├── Parser.h
 │   ├── Parser.cpp
-│   ├── AST.h                # Árbol sintáctico abstracto
-│   ├── Interprete.h         # Intérprete
+│   ├── AST.h
+│   ├── Interprete.h
 │   └── Interprete.cpp
-├── ejemplos/                # Ejemplos de programas
-│   ├── hola.ld
-│   ├── operaciones.ld
-│   ├── condicionales.ld
-│   ├── while.ld
-│   ├── for.ld
-│   ├── funciones.ld
-│   ├── tablas.ld
-│   ├── logica.ld
-│   ├── textos.ld
-│   └── fibonacci.ld
-├── main.cpp                 # Programa principal
-├── CMakeLists.txt          # Configuración CMake
-└── README.md               # Este archivo
+├── ejemplos/                # programas de ejemplo (.ld)
+├── compilar.sh / compilar.bat# scripts de compilación rápidos
+├── README.md
+├── INSTALACION.md
+├── ESPECIFICACION.md
+├── PROYECTO_FINAL.md
+└── LICENSE
 ```
 
-## Compilación
+Cómo encajan las piezas:
+- `main.cpp` implementa el flujo principal: leer archivo o entrar en REPL → tokenizar con `Lexer` → parsear con `Parser` → ejecutar AST con `Interprete`.
+- `ide_main.cpp` y `src/ServidorHTTP.*` conforman una versión de IDE/servicio web (construido como ejecutable separado por CMake).
 
-### Con CMake (Recomendado)
-
+### Compilación (rápida)
+Recomendado: CMake
 ```bash
-cd Lenguage
+git clone https://github.com/Luiscrespo-bot/G-.git
+cd G-
 mkdir build
 cd build
 cmake ..
 cmake --build .
 ```
 
-### Compilación manual (g++)
+Esto creará al menos dos ejecutables:
+- `lenguaje` (intérprete CLI)
+- `lenguaje_ide` (IDE web, si tu sistema cumple dependencias)
 
+Compilación manual (g++):
 ```bash
 g++ -std=c++17 src/Lexer.cpp src/Parser.cpp src/Interprete.cpp main.cpp -o lenguaje
 ```
 
-### Compilación manual (Visual Studio)
+Uso:
+- Ejecutar un archivo: `./lenguaje ejemplos/hola.ld`
+- REPL: `./lenguaje` (escribe "salir" para terminar)
 
+Consulta `ESPECIFICACION.md` para la gramática completa y ejemplos detallados.
+
+### Limitaciones conocidas
+- Sin arrays/listas ni diccionarios aún.
+- Manejo de scope y recursión limitado.
+- No hay soporte para múltiples archivos o módulos.
+- No hay suite de pruebas automatizada (por ahora).
+
+### Extensiones planeadas
+- Arrays y colecciones.
+- Diccionarios / mapas.
+- Manejo de excepciones (try/catch).
+- Módulos/imports y soporte para múltiples archivos.
+- Más funciones estándar (math, string utilities).
+
+### Contribuir
+1. Abre un issue para discutir cambios grandes.
+2. Crea un fork y una rama con tu PR.
+3. Incluye ejemplos y pasos para reproducir/compilar tus cambios.
+
+---
+
+## English (EN)
+
+LenguajeLd — Programming language in Spanish (Interpreter in C++)
+
+An educational programming language with Spanish keywords and an interpreter implemented in C++ (lexer, parser, and executor). Great for learning lexical/syntactic analysis and writing simple programs using Spanish-only syntax.
+
+### Status
+Working: CLI interpreter and a basic IDE version included. Examples in `/ejemplos`. Project is in development — planned improvements (arrays, modules, exceptions).
+
+### Key features
+- Keywords in Spanish (e.g., `var`, `si`, `sino`, `mientras`, `para`, `funcion`, `retorna`, `escribir`, `leer`).
+- Basic types: numbers (integers and floats), texts (strings), booleans.
+- Arithmetic, comparison and logical operators.
+- Variable declaration, functions with parameters and return values.
+- Control flow: conditionals and loops.
+- Interactive mode (REPL) and file execution.
+- Examples included in `ejemplos/`.
+
+### Project layout
+```
+/ (repo root)
+├── CMakeLists.txt
+├── main.cpp
+├── ide_main.cpp
+├── src/
+│   ├── Lexer.h, Lexer.cpp
+│   ├── Parser.h, Parser.cpp
+│   ├── AST.h
+│   └── Interprete.*
+├── ejemplos/
+├── compilar.sh / compilar.bat
+└── LICENSE
+```
+
+How it fits together:
+- `main.cpp` is the main flow: read file or REPL → tokenize with `Lexer` → parse with `Parser` → execute AST with `Interprete`.
+- `ide_main.cpp` and `src/ServidorHTTP.*` implement a simple IDE/web service (built as a separate executable in CMake).
+
+### Build (quick)
+Recommended: CMake
 ```bash
-cl /std:c++latest src\Lexer.cpp src\Parser.cpp src\Interprete.cpp main.cpp
+git clone https://github.com/Luiscrespo-bot/G-.git
+cd G-
+mkdir build
+cd build
+cmake ..
+cmake --build .
 ```
 
-## Uso
-
-### Ejecutar un archivo
+Manual g++ build:
 ```bash
-./lenguaje ejemplos/hola.ld
+g++ -std=c++17 src/Lexer.cpp src/Parser.cpp src/Interprete.cpp main.cpp -o lenguaje
 ```
 
-### Modo interactivo
-```bash
-./lenguaje
-```
+### Usage
+- Run a file: `./lenguaje ejemplos/hola.ld`
+- REPL: `./lenguaje` (type `salir` to exit)
 
-## Guía de Sintaxis
+See `ESPECIFICACION.md` for full grammar and detailed examples.
 
-### Variables
+### Known limitations
+- No arrays/lists or dictionaries yet.
+- Limited scope and deep recursion support.
+- No multi-file/module support.
+- No automated test suite yet.
 
-```
-var nombre = valor;
-```
+### Planned extensions
+- Arrays and collections.
+- Dictionaries / maps.
+- Exception handling (try/catch).
+- Modules/imports and multi-file support.
+- More standard library functions.
 
-Ejemplos:
-```
-var x = 10;
-var mensaje = "Hola";
-var esVerdad = verdadero;
-```
-
-### Operaciones Aritméticas
-
-```
-var a = 10;
-var b = 3;
-var suma = a + b;           // 13
-var resta = a - b;          // 7
-var multiplicacion = a * b; // 30
-var division = a / b;       // 3.33
-var modulo = a % b;         // 1
-```
-
-### Comparaciones y Lógica
-
-```
-si (x > 5 && y < 10) {
-    escribir("Condición cumplida");
-}
-
-si (a == b || c != d) {
-    escribir("Una de las condiciones es verdadera");
-}
-```
-
-### Control Condicional
-
-#### Si/Sino
-```
-si (condicion) {
-    // código si verdadero
-} sino {
-    // código si falso
-}
-```
-
-Ejemplo:
-```
-var edad = 18;
-si (edad >= 18) {
-    escribir("Eres mayor de edad");
-} sino {
-    escribir("Eres menor de edad");
-}
-```
-
-### Bucles
-
-#### Bucle Mientras
-```
-mientras (condicion) {
-    // código que se repite
-}
-```
-
-Ejemplo:
-```
-var contador = 0;
-mientras (contador < 5) {
-    escribir(contador);
-    contador = contador + 1;
-}
-```
-
-#### Bucle Para
-```
-para (variable = inicio; fin; paso) {
-    // código que se repite
-}
-```
-
-Ejemplo:
-```
-para (i = 1; i <= 10; i = i + 1) {
-    escribir(i);
-}
-```
-
-### Funciones
-
-#### Declaración
-```
-funcion nombre(parametro1, parametro2) {
-    // código de la función
-}
-```
-
-#### Con retorno
-```
-funcion cuadrado(x) {
-    retorna x * x;
-}
-
-var resultado = cuadrado(5);  // resultado = 25
-```
-
-Ejemplo completo:
-```
-funcion sumar(a, b) {
-    retorna a + b;
-}
-
-var resultado = sumar(3, 4);
-escribir("La suma es:", resultado);
-```
-
-### Entrada/Salida
-
-#### Escribir (Salida)
-```
-escribir("texto");
-escribir(variable);
-escribir("múltiples", "argumentos", 123);
-```
-
-Ejemplo:
-```
-var nombre = "Juan";
-var edad = 25;
-escribir("Nombre:", nombre);
-escribir("Edad:", edad);
-```
-
-#### Leer (Entrada)
-```
-leer(variable_nombre);
-```
-
-Ejemplo:
-```
-escribir("¿Cuál es tu nombre?");
-leer(nombre);
-escribir("Hola,", nombre);
-```
-
-### Concatenación de Textos
-
-```
-var a = "Hola";
-var b = "Mundo";
-var resultado = a + " " + b;  // "Hola Mundo"
-```
-
-### Comentarios
-
-Comentarios de línea única:
-```
-// Este es un comentario
-var x = 5;  // Esto también es un comentario
-```
-
-Comentarios de múltiples líneas:
-```
-/* Esto es un comentario
-   que abarca
-   varias líneas */
-```
-
-## Tipos de Datos
-
-### Números
-- Soportan enteros y decimales
-- Operaciones: `+`, `-`, `*`, `/`, `%`
-
-### Textos (Strings)
-- Encerrados en comillas simples o dobles
-- Concatenación con `+`
-- Secuencias de escape: `\n` (salto de línea), `\t` (tabulación)
-
-### Booleanos
-- Valores: `verdadero`, `falso`
-- Usados en condicionales
-- Resultado de comparaciones
-
-## Operadores
-
-### Aritméticos
-- `+` Suma
-- `-` Resta
-- `*` Multiplicación
-- `/` División
-- `%` Módulo (residuo)
-
-### Comparadores
-- `==` Igual
-- `!=` No igual
-- `<` Menor
-- `>` Mayor
-- `<=` Menor o igual
-- `>=` Mayor o igual
-
-### Lógicos
-- `&&` Y (AND)
-- `||` O (OR)
-- `!` NO (NOT)
-
-### Asignación
-- `=` Asignación
-- `+=` Suma y asigna
-- `-=` Resta y asigna
-- `*=` Multiplica y asigna
-- `/=` Divide y asigna
-
-## Ejemplos de Programas
-
-### 1. Hola Mundo
-```
-escribir("¡Hola, Mundo!");
-```
-
-### 2. Tabla de Multiplicar
-```
-funcion tabla(numero) {
-    para (i = 1; i <= 10; i = i + 1) {
-        var resultado = numero * i;
-        escribir(numero, "x", i, "=", resultado);
-    }
-}
-
-tabla(5);
-```
-
-### 3. Números de Fibonacci
-```
-funcion fibonacci(n) {
-    si (n <= 1) {
-        retorna n;
-    }
-    retorna fibonacci(n - 1) + fibonacci(n - 2);
-}
-
-para (i = 0; i < 10; i = i + 1) {
-    escribir(fibonacci(i));
-}
-```
-
-### 4. Verificar si es par o impar
-```
-funcion es_par(numero) {
-    si (numero % 2 == 0) {
-        retorna verdadero;
-    }
-    retorna falso;
-}
-
-var num = 7;
-si (es_par(num)) {
-    escribir(num, "es par");
-} sino {
-    escribir(num, "es impar");
-}
-```
-
-## Limitaciones Conocidas
-
-- No soporta arrays/listas
-- No soporta estructuras de datos complejas
-- No soporta recursión profunda (limitada por el stack)
-- No soporta múltiples archivos
-- No soporta scope global vs local específico (todas las funciones comparten scope global)
-
-## Extensiones Futuras
-
-- Arrays y listas
-- Diccionarios/mapas
-- Excepciones con try/catch
-- Módulos e importación
-- Clases y programación orientada a objetos
-- Más funciones integradas (sqrt, abs, etc.)
-
-## Problemas Comunes
-
-### Error: "Variable no definida"
-Asegúrate de declarar la variable con `var` antes de usarla.
-
-### Error: "División por cero"
-Verifica que no estés intentando dividir entre cero.
-
-### El bucle `para` no se ejecuta
-Verifica que el paso no sea cero y que la condición sea correcta.
-
-### Las funciones no retornan valor
-Usa `retorna` para devolver un valor de una función.
-
-## Autor
-Luis Fernando Crespo Soliz 
- Intérprete creado en C++ con lexer, parser e intérprete personalizado.
-
-## Licencia
-
-Libre para usar y modificar.
+### Contributing
+1. Open an issue to discuss large changes.
+2. Fork and open a PR with your branch.
+3. Include examples and reproduction steps.
